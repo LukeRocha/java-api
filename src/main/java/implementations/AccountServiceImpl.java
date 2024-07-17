@@ -12,17 +12,13 @@ import com.example.java_user_api.service.AccountService;
 import com.example.java_user_api.repository.AccountRepository;
 
 @Service
-public class AccountServiceImp implements AccountService{
+public class AccountServiceImpl implements AccountService{
 
     @Autowired
     private AccountMapper accountMapper;
 
     @Autowired
     private AccountRepository accountRepository;
-
-    @Autowired
-    private AccountService accountService;
-
 
     @Override
     @Transactional
