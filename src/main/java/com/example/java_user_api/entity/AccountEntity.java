@@ -5,10 +5,11 @@ import lombok.*;
 
 import lombok.ToString;
 
-@Entity
 @Getter
 @Setter
 @ToString
+@Entity
+@Table(name = "accounts")
 public class AccountEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )

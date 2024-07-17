@@ -1,58 +1,48 @@
-//note: the java ws dependency, is part of the JAX-RS (Java API for RESTful Web Services) specification, which is a set of APIs to create REST web services in Java.
-
-//Resumo
-//@Component: For any generic bean.
-//@Service: Services classes (business logic).
-//@Repository: For classes that interact with database.
-//@Controller: For HTTP req classes (web MVC).
-//@RestController: API and REST classes.
-//@Autowired: For automatic DI.
-//These notations allow spring to manage objects and its dependencies automatically, making development and maintenance easy.
-
 package com.example.java_user_api.controller;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import com.example.java_user_api.dto.AccountDto;
+import com.example.java_user_api.entity.AccountEntity;
+import com.example.java_user_api.service.AccountService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Path("/accounts")
+@RestController
+@RequestMapping("/accounts")
 public class AccountController {
 
-    @POST
-    @Path("/create")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response createAccount(/* your Account DTO here */) {
-    //  return Response.status(Response.Status.CREATED).entity(/* created account here */).build();
-        return Response.ok("Account has been created").build();
+    private final AccountService accountService;
+
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
     }
 
-    @GET
-    @Path("/user/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getAccount(){
-        return Response.ok("Here is your account").build();
+    @PostMapping("/create")
+    public ResponseEntity<String> createAccount(@RequestBody AccountDto accountDto) {
+        AccountEntity accountEntity = accountService.createAccount(accountDto);
+        return ResponseEntity.ok("Account has been created: " + accountEntity);
     }
 
-    @GET
-    @Path("/users")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getAccountsList(){
-        return Response.ok("There is all accounts ->").build();
+    @GetMapping("/user/{id}")
+    public ResponseEntity<String> getAccount(@PathVariable Long id) {
+        // Implement your logic to fetch account details by id
+        return ResponseEntity.ok("Here is your account for id: " + id);
     }
 
-    @PUT
-    @Path("/update/{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response editAccount() {
-        return Response.ok("account has been updated").build();
+    @GetMapping("/users")
+    public ResponseEntity<String> getAccountsList() {
+        // Implement your logic to fetch list of accounts
+        return ResponseEntity.ok("Here is the list of all accounts");
     }
 
-    @DELETE
-    @Path("/{id}")
-    public Response deleteAccount(@PathParam("id") Long id) {
-        // Your logic to delete an account
-        return Response.noContent().build();
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> editAccount(@PathVariable Long id, @RequestBody AccountDto accountDto) {
+        // Implement your logic to update account details
+        return ResponseEntity.ok("Account has been updated for id: " + id);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAccount(@PathVariable Long id) {
+        // Implement your logic to delete an account
+        return ResponseEntity.noContent().build();
     }
 }

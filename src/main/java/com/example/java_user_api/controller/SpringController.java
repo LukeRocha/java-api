@@ -5,10 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/accounts")
+@RequestMapping("/accosdunts")
 public class SpringController {
 
-    @PostMapping("/create")
+    @PostMapping("/crseate")
     public ResponseEntity<String> createAccount(/* your Account DTO here */) {
         return ResponseEntity.status(HttpStatus.CREATED).body("Account has been created");
     }

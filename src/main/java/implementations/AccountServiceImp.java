@@ -1,6 +1,5 @@
 package implementations;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
@@ -10,6 +9,7 @@ import com.example.java_user_api.dto.AccountDto;
 import com.example.java_user_api.entity.AccountEntity;
 import com.example.java_user_api.mapper.AccountMapper;
 import com.example.java_user_api.service.AccountService;
+import com.example.java_user_api.repository.AccountRepository;
 
 @Service
 public class AccountServiceImp implements AccountService{
@@ -18,16 +18,21 @@ public class AccountServiceImp implements AccountService{
     private AccountMapper accountMapper;
 
     @Autowired
-    private AccountRepositoryImp accountRepository;
+    private AccountRepository accountRepository;
+
+    @Autowired
+    private AccountService accountService;
+
 
     @Override
     @Transactional
     public AccountEntity createAccount(AccountDto accountDto){
         AccountEntity accountEntity = accountMapper.DtoToEntity(accountDto);
 
-        accountRepository.save(accountEntity);
+        System.out.println(accountEntity);
+        return accountRepository.save(accountEntity);
 
-        return null;
+
     };
 
 }
