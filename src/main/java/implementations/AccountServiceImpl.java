@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 
-
 import com.example.java_user_api.dto.AccountDto;
 import com.example.java_user_api.entity.AccountEntity;
 import com.example.java_user_api.mapper.AccountMapper;
@@ -27,8 +26,6 @@ public class AccountServiceImpl implements AccountService{
 
         System.out.println(accountEntity);
         return accountRepository.save(accountEntity);
-
-
     };
 
 }

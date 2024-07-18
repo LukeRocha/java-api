@@ -3,6 +3,8 @@ package com.example.java_user_api.controller;
 import com.example.java_user_api.dto.AccountDto;
 import com.example.java_user_api.entity.AccountEntity;
 import com.example.java_user_api.service.AccountService;
+import implementations.AccountServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,13 +12,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/accounts")
 public class AccountController {
 
-    private final AccountService accountService;
+    @Autowired
+    private AccountService accountService;
 
-    public AccountController(AccountService accountService) {
-        this.accountService = accountService;
-    }
-
-    @PostMapping("/create")
+    @PostMapping("/")
     public ResponseEntity<String> createAccount(@RequestBody AccountDto accountDto) {
         AccountEntity accountEntity = accountService.createAccount(accountDto);
         return ResponseEntity.ok("Account has been created: " + accountEntity);
