@@ -6,7 +6,6 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface AccountMapper {
-    // Assinaturas dos métodos de mapeamento
     AccountEntity DtoToEntity(AccountDto accountDto);
     AccountDto toDto(AccountEntity accountEntity);
 }
