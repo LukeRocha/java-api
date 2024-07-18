@@ -1,4 +1,4 @@
-package implementations;
+package com.example.java_user_api.implementations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,14 +22,11 @@ public class AccountServiceImpl implements AccountService{
     @Override
     @Transactional
     public AccountEntity createAccount(AccountDto accountDto){
-//        AccountEntity accountEntity = accountMapper.DtoToEntity(accountDto);
-        AccountEntity accountEntity = new AccountEntity();
-        accountEntity.setUserName(accountDto.getUserName());
-        accountEntity.setEmail(accountDto.getEmail());
-        accountEntity.setPassword(accountDto.getPassword());
-
+        AccountEntity accountEntity = accountMapper.DtoToEntity(accountDto);
         accountRepository.save(accountEntity);
+
         System.out.println(accountEntity);
+
         return accountRepository.save(accountEntity);
     };
 

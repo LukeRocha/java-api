@@ -1,11 +1,9 @@
 package com.example.java_user_api;
 
-import com.example.java_user_api.dto.AccountDto;
-import com.example.java_user_api.entity.AccountEntity;
 import com.example.java_user_api.mapper.AccountMapper;
 import com.example.java_user_api.mapper.AccountMapperImpl;
 import com.example.java_user_api.service.AccountService;
-import implementations.AccountServiceImpl;
+import com.example.java_user_api.implementations.AccountServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

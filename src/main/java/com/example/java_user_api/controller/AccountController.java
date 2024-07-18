@@ -22,25 +22,21 @@ public class AccountController {
 
     @GetMapping("/user/{id}")
     public ResponseEntity<String> getAccount(@PathVariable Long id) {
-        // Implement your logic to fetch account details by id
         return ResponseEntity.ok("Here is your account for id: " + id);
     }
 
     @GetMapping("/users")
     public ResponseEntity<String> getAccountsList() {
-        // Implement your logic to fetch list of accounts
         return ResponseEntity.ok("Here is the list of all accounts");
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<String> editAccount(@PathVariable Long id, @RequestBody AccountDto accountDto) {
-        // Implement your logic to update account details
         return ResponseEntity.ok("Account has been updated for id: " + id);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAccount(@PathVariable Long id) {
-        // Implement your logic to delete an account
         return ResponseEntity.noContent().build();
     }
 }
