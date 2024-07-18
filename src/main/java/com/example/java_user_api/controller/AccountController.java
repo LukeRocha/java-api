@@ -3,7 +3,6 @@ package com.example.java_user_api.controller;
 import com.example.java_user_api.dto.AccountDto;
 import com.example.java_user_api.entity.AccountEntity;
 import com.example.java_user_api.service.AccountService;
-import implementations.AccountServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

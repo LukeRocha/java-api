@@ -18,7 +18,7 @@ public class AccountDto
   @NotBlank(message = "O nome não pode estar em branco")
   @Size(min = 3, max = 50, message = "O nome deve ter entre 3 e 50 caracteres")
   @JsonProperty("accountUserName")
-  String username;
+  String userName;
 
   @NotBlank(message = "O campo de e-mail não pode estar em branco")
   @Email(message = "O e-mail deve estar em um formato válido")
