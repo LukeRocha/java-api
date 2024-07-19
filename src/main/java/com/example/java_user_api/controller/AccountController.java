@@ -1,10 +1,11 @@
 package com.example.java_user_api.controller;
 
-import com.example.java_user_api.dto.AccountDto;
-import com.example.java_user_api.entity.AccountEntity;
-import com.example.java_user_api.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import com.example.java_user_api.dto.AccountDto;
+import com.example.java_user_api.entity.AccountEntity;
+import com.example.java_user_api.mapper.AccountMapper;
+import com.example.java_user_api.service.AccountService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,10 +15,14 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private AccountMapper accountMapper;
+
     @PostMapping("/")
-    public ResponseEntity<String> createAccount(@RequestBody AccountDto accountDto) {
+    public ResponseEntity<AccountDto> createAccount(@RequestBody AccountDto accountDto) {
         AccountEntity accountEntity = accountService.createAccount(accountDto);
-        return ResponseEntity.ok("Account has been created: " + accountEntity);
+        AccountDto responseDto = accountMapper.toDto(accountEntity);
+        return ResponseEntity.ok(responseDto);
     }
 
     @GetMapping("/user/{id}")

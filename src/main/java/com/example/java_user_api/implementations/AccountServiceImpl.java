@@ -23,9 +23,6 @@ public class AccountServiceImpl implements AccountService{
     @Transactional
     public AccountEntity createAccount(AccountDto accountDto){
         AccountEntity accountEntity = accountMapper.DtoToEntity(accountDto);
-        accountRepository.save(accountEntity);
-
-        System.out.println(accountEntity);
 
         return accountRepository.save(accountEntity);
     };
